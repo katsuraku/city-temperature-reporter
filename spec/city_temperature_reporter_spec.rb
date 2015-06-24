@@ -24,9 +24,9 @@ describe CityTemperatureReporter do
     # once it's got that temperature, can it report it?
     #SETUP
     # - need a weatherman double
-    weatherman = double :weatherman
+    weatherman = double(:weatherman, { get_temperature: '29'})
     seoul      = CityTemperatureReporter.new('Seoul', weatherman)
     #EXPECTATION
-    expect(seoul.temperature).to eq '29'
+    expect(seoul.request_temperature).to eq '29'
   end
 end
