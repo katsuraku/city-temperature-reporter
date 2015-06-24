@@ -9,7 +9,7 @@ describe CityTemperatureReporter do
     #- there needs to be a weatherman.
     weatherman = double :weatherman
     #- there needs to be a temperature reporter - put the 'let' line in above.
-    new_york = CityTemperatureReporter.new('New York', weatherman)
+    new_york = CityTemperatureReporter.new('New_York', weatherman)
     # EXPECTATION ABOUT THE FUTURE
     expect(weatherman).to receive(:get_temperature).with('New_York')
     # this is the way to say receive a message with 'New_York' as a parameter
@@ -24,7 +24,8 @@ describe CityTemperatureReporter do
     # once it's got that temperature, can it report it?
     #SETUP
     # - need a weatherman double
-    weatherman = double(:weatherman, { get_temperature: '29'})
+    weatherman = double(:weatherman)
+    allow(weatherman).to receive(:get_temperature).with('Seoul').and_return('29')
     seoul      = CityTemperatureReporter.new('Seoul', weatherman)
     #EXPECTATION
     expect(seoul.request_temperature).to eq '29'
